@@ -1,0 +1,16 @@
+<h2>Predict Outcome</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Predict</button>
+</form>
+
+{% if prediction %}
+    <h3>Prediction: {{ prediction }}</h3>
+{% endif %}
+
+<h2>Analytics</h2>
+{% for col, chart in charts.items %}
+    <h4>{{ col }} vs Target</h4>
+    <img src="data:image/png;base64,{{ chart }}">
+{% endfor %}
